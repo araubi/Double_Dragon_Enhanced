@@ -1,0 +1,144 @@
+DOUBLE DRAGON MSX1 - CAMBIOS SOBRE LA CONVERSIÓN DE XORTRAPA SOFT
+==================================================================
+Base: cinta original de Xortrapa (enf. FX-Fernando García), conversión del
+Double Dragon de ZX Spectrum (Melbourne House, 1988).
+Versión publicada: releases/DoubleDragon_ASCII8.rom (27-10-2026)
+  - DoubleDragon_ASCII8.rom: MegaROM ASCII8 de 256 KB, sin multicarga.
+  - DoubleDragon_optimizado.cas: cinta con la misma estructura de 7 cargas.
+Casi todo va en las dos versiones. Lo que va solo en la ROM lo marco [ROM].
+
+
+1. FORMATO Y ARRANQUE
+---------------------
+- MegaROM ASCII8 de 256 KB con las 7 cargas dentro (1, 2, 3A, 3B, 4, 5A, 5B),
+  sin esperas de cinta. Detecta el slot, también con slots expandidos, y el
+  reinicio vuelve limpio al menú. [ROM]
+- Cinta optimizada con los checksums corregidos.
+- Al completar una misión se carga la siguiente sola; ya no hay opción de
+  repetir la misma.
+- Mensajes de carga: "CAPS" cambiado por "SHIFT".
+
+
+2. VELOCIDAD
+------------
+- Medido en la misión 1 con la misma partida: el original va a unos 4,6
+  fotogramas por segundo y la ROM actual a unos 7,7 (un 66 % más rápida).
+  En las demás misiones la ROM va de 5,1 a 6,9.
+- Volcado a pantalla solo de las celdas de 8x8 que cambian; color y marcador,
+  por diferencias.
+- Bucle de dibujo y volteo de figuras reescrito (+9 a +13 % en todas las
+  misiones). [ROM]
+- Quitado el volcado completo de seguridad cada 32 cuadros, que daba un tirón
+  periódico. [ROM]
+- Misión 5A: las piedras de la pared solo se repintan cuando cambian, y solo
+  salen con el jugador cerca (la zona pasa de ~7 a ~14 fotogramas por segundo).
+- Accesos al VDP con el tiempo mínimo que pide el TMS9918 (sin fallos de
+  vídeo en máquinas lentas).
+- Unos 3,1 KB de restos del Spectrum eliminados (Kempston, menú de teclas,
+  volcador original...).
+
+
+3. CONTROLES
+------------
+- Jugador 1: cursores + ESPACIO (o joystick 1).
+- Jugador 2: WASD + SHIFT.
+- Joystick 1 bien configurado en el PSG (registros 7 y 15).
+- Menú actualizado con las teclas nuevas.
+
+
+4. GRÁFICOS
+-----------
+- Pantalla de carga: el logo de la recreativa pasado a MSX1 con tramas,
+  con el retoque de araubi. Sale también tras el final del juego, antes de
+  volver al menú. [el del final, solo ROM]
+- Jugadores con sprites de color: Billy en celeste y Jimmy en rojo, con
+  contorno negro; Jimmy ya no va en negativo. Doble juego de sprites para que
+  no se desfasen al saltar. [ROM]
+- Caras del marcador en color (celeste y rojo) y la de Jimmy sin negativo.
+  [ROM]
+- Jeff con el aspecto antiguo del jugador 2 (negativo), sin máscara roja.
+  [ROM; en cinta sigue en rojo oscuro]
+- Fotogramas 33 y 83 (tumbado por el aire) sin los restos de encima
+  (retoque de araubi).
+- Puertas del ascensor y pared que rompe Abobo se veían a medias con el
+  volcado por celdas: corregido.
+- Final de la misión 4: la última baldosa de la puerta abierta leía basura
+  (venía del original). Ahora se ve el poste hasta el suelo.
+- Final de la misión 2: la pared en diagonal junto a la escalera ya no sale
+  con bloques azules.
+
+
+5. MÚSICA Y SONIDO
+------------------
+- Música de la recreativa a 3 voces PSG con batería [ROM]:
+  - Tema de apertura en la carga y en el menú.
+  - Una canción por misión: 02 en la 1 y la 4, 06 en la 2 y la 5A, 07 en la
+    3A y la 3B, 08 en la 5B. Empieza con el primer cuadro de juego.
+  - 03 (entrada de Abobo) con cada jefe: último Abobo de la 1, Jeff de la 2,
+    los dos Abobos del final de la 3B y el Abobo de la 4. Con efecto wah y la
+    sirena de entrada; el bucle vuelve a la sirena, como en la recreativa.
+    El jefe se reconoce por tipo y energía, y la música entra aunque le hayan
+    pegado antes de verlo.
+  - 5B: la música del menú entra al llegar a la escalera de la guarida.
+  - 04 en «COMPLETED MISSION» y 09 al matar a Willy.
+- Efectos de la recreativa (identificados por araubi): puñetazo, patada,
+  rodillazo, caída al suelo, muerte (jugador, enemigo y Linda), bate, látigo,
+  cuchillo lanzado y parado, bidón, roca, caída al agua o al foso, piedras de
+  la 5A, ráfaga de Willy y zap final.
+  - ROM: cada efecto va cuadro a cuadro en el canal C, imitando la muestra.
+  - Cinta: versión corta, un golpe de envolvente.
+- Los golpes ya no suenan "como metralletas": un solo efecto por golpe.
+- Efectos que ya no paran el juego (antes los bucles de beeper silenciados
+  lo congelaban).
+
+
+6. JUGABILIDAD
+--------------
+- Energía de cada enemigo como en la recreativa (dificultad normal),
+  proporcional a los 150 del jugador:
+    Enemigo normal: 37 (misión 1), 51-56 (2), 66 (3), 80 (4)
+    Linda: 28, 37, 47, 56
+    Abobo: 89-103 (1), 112-122 (3), 117-131 (4); jefes 112, 140, 150
+    Jeff: 131 (2) y 150 (4). Willy: 150.
+- Jeff, enemigo nuevo (no estaba en la conversión). Se mueve como un
+  jugador: puñetazo, patada y patada en salto. Sale en la misión 2 (final
+  del mapa), en la 4 (dos en el puente) y en la 5B (tres con Willy). Solo
+  pega a los jugadores y no se le puede agarrar.
+- Willy sale antes en la 5B y por la puerta del arco, no atravesando la
+  pared.
+- Codazo: tumba al primer golpe, quita 6 de energía y solo afecta a los
+  jugadores.
+- Abobo, al levantarse, lanza por los aires al jugador pegado a él.
+- Agarre de los pelos y rodillazo: en la misión 2 casi nunca salía (pedía
+  la misma altura exacta); arreglado. No se puede agarrar a Linda, Abobo ni
+  Jeff.
+- Látigo: solo lo cogen Linda y los jugadores, como en la recreativa, y los
+  demás enemigos ya no van a por él.
+- Scroll: empieza 2 columnas antes, y si queda pendiente el jugador puede
+  seguir hasta el borde.
+
+
+7. FALLOS CORREGIDOS (casi todos venían del original de Xortrapa)
+-----------------------------------------------------------------
+- GAME OVER sin créditos en las misiones 2 a 5B colgaba el juego (pedía
+  rebobinar una cinta inexistente en la ROM).
+- Abobos que desaparecían al caer (faltaba copiar parte de sus gráficos).
+  [solo pasaba en la ROM]
+- Misión 2: una patada en salto junto a la reja dejaba al jugador
+  enganchado arriba y moría al bajar (basura en el mapa de alturas).
+- Misión 1 (seto del final) y 3A: la misma basura dejaba al jugador encima
+  del seto.
+- Misión 2: un bidón que golpeaba al jugador lo "teletransportaba" al borde
+  y le quitaba una vida.
+- Misión 2: los dos últimos enemigos podían aparecer sobre el vacío y caer.
+- Misión 5A: cuelgue total del ordenador por un objeto "fantasma" que
+  borraba toda la memoria.
+- Misión 5A: las piedras de la pared dejaban de salir.
+- Turbo R (y cualquier MSX con la RAM sin borrar al arrancar): al empezar salía
+  una franja de rayas junto al jugador hasta el primer golpe. Era memoria sin
+  borrar del relleno de los sprites; ahora se borra entera en cada cuadro. [ROM]
+
+
+Pruebas: todas las cargas en ROM y cinta con tres configuraciones de slots,
+partidas al azar sin cuelgues y las repeticiones (.omr) de araubi reproducidas
+en nuestro emulador. Falta la prueba en hardware real.

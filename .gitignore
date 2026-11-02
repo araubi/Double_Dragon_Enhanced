@@ -1,0 +1,32 @@
+# Originales y datos extraídos de la cinta: no se publican
+*.cas
+*.tsx
+*.vgz
+fuentes/dd/
+# Salidas de la compilación
+fuentes/build/*.rom
+fuentes/build/*.bin
+!fuentes/build/figuras_parches.bin
+!fuentes/build/logo_sc2.bin
+fuentes/build/*.lst
+fuentes/build/*.sym
+fuentes/build/missions/
+fuentes/build/m2*
+fuentes/build/dd_ram.asm
+fuentes/build/drec.inc
+fuentes/build/jrec.inc
+fuentes/build/fliptab.inc
+fuentes/build/mistable.inc
+fuentes/build/misthunks.inc
+fuentes/build/scrollrec*.inc
+fuentes/build/retrato.inc
+fuentes/build/romitems.inc
+fuentes/build/ressyms.inc
+fuentes/build/musbanks.inc
+fuentes/build/mus_cur.inc
+fuentes/build/mus_opt.inc
+fuentes/build/mus_polls.inc
+fuentes/build/sfx_data.inc
+fuentes/emu/*.so
+fuentes/emu/shots/
+__pycache__/
